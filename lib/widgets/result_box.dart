@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/models/firebase_auth.dart';
+import 'package:my_app/screens/login.dart';
 import '../constants.dart';
 
 class ResultBox extends StatelessWidget {
@@ -13,6 +15,21 @@ class ResultBox extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
+    Future<void> _signOut(BuildContext context) async {
+      try {
+        await AuthService.signOut();
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pop();
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => LoginPage(), // Replace with your login page
+          ),
+        );
+      } catch (e) {
+        print('Sign-out failed: $e');
+      }
+    }
+
     return AlertDialog(
       backgroundColor: background,
       content: Padding(
@@ -54,6 +71,19 @@ class ResultBox extends StatelessWidget {
                 onTap: onPressed,
                 child: const Text(
                   'Start Over',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  _signOut(context);
+                },
+                child: const Text(
+                  'Sign Out',
                   style: TextStyle(
                       color: Colors.blue,
                       fontSize: 20.0,

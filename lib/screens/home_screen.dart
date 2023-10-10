@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return Scaffold(
               backgroundColor: background,
               appBar: AppBar(
-                title: const Text('Quiz App'),
+                title: const Text('KnowHub'),
                 backgroundColor: background,
                 shadowColor: Colors.transparent,
                 actions: [

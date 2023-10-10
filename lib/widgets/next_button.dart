@@ -13,7 +13,7 @@ class NextButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: const Text(
-        'Next Question',
+        'Next ',
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 18.0),
       ),
